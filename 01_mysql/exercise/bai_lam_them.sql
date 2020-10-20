@@ -1,5 +1,6 @@
-create database bai_tap_lam_them;
-use bai_tap_lam_them;
+create database bai_tap_lam_them_01;
+drop database bai_tap_lam_them_01;
+use bai_tap_lam_them_01;
 create table Products(
 Id int,
 Name nvarchar(50),
