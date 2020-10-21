@@ -1,5 +1,6 @@
 create database bai_lam_them_02;
 drop database bai_lam_them_02;
+drop table orders;
 create table categories(
 id_categorie int not null auto_increment primary key,
 name nvarchar(50) not null unique,
@@ -45,7 +46,7 @@ check (discount > 0 and discount <100)
 );
 create table orders(
 id_order int not null auto_increment primary key,
-created_date datetime not null,
+created_date datetime not null default current_timestamp,
 shipped_date datetime,
 status_order varchar(50) not null default 'waiting',
 Descriptions nvarchar(10000),
@@ -63,7 +64,6 @@ id_order_details int not null auto_increment primary key,
 order_id int not null,
 product_id int not null,
 quantity int not null);
-drop table orders;
 
 alter table products add foreign key(category_id) references categories(id_categorie);
 alter table products add foreign key(supplier_id) references suppliers(id_supplier);
