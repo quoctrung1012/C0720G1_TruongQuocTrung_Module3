@@ -2,12 +2,12 @@ create database bai_lam_them_02;
 drop database bai_lam_them_02;
 drop table orders;
 create table categories(
-id_categorie int not null auto_increment primary key,
+id_categorie int auto_increment primary key,
 name nvarchar(50) not null unique,
 Descriptions nvarchar(500)
 );
 create table suppliers(
-id_supplier int not null auto_increment primary key,
+id_supplier int auto_increment primary key,
 name nvarchar(100) not null,
 email varchar(50) not null unique,
 phone_number varchar(50),
@@ -32,7 +32,7 @@ email varchar(50) not null unique,
 birthday date
 );
 create table products(
-id_product int not null auto_increment primary key,
+id_product int auto_increment primary key,
 name_product nvarchar(50) not null,
 UmageUrl nvarchar(1000) not null,
 price int not null default 0,
@@ -45,7 +45,7 @@ check (price >=0),
 check (discount > 0 and discount <100)
 );
 create table orders(
-id_order int not null auto_increment primary key,
+id_order int auto_increment primary key,
 created_date datetime not null default current_timestamp,
 shipped_date datetime,
 status_order varchar(50) not null default 'waiting',
@@ -60,7 +60,7 @@ check (status_order='waiting'or'completed'or'canceled'),
 check(payment_type='pay'or'creditcard')
 );
 create table OrderDetails(
-id_order_details int not null auto_increment primary key,
+id_order_details int auto_increment primary key,
 order_id int not null,
 product_id int not null,
 quantity int not null);

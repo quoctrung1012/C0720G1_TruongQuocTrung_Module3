@@ -2,7 +2,7 @@ create database phan_tich_va_thiet_ke_csdl;
 drop database phan_tich_va_thiet_ke_csdl;
 
 create table customers(
-id_customers int  not null auto_increment primary key,
+id_customers int auto_increment primary key,
 customer_name nvarchar(50) not null,
 contact_last_name nvarchar(50) not null,
 contact_first_name nvarchar(50) not null,
@@ -17,12 +17,12 @@ credit_limit int,
 salesRepEmployeeNumber int
 );
 create table products_line(
-id_products_line int not null primary key,
+id_products_line int primary key,
 Descriptions text,
 image text
 );
 create table products(
-id_product varchar(20) not null primary key,
+id_product varchar(20)  primary key,
 product_name varchar(70) not null,
 product_scale varchar(10) not null,
 product_vendor varchar(50) not null,
@@ -33,7 +33,7 @@ msrp double not null,
 products_line_id int
 );
 create table orders(
-id_order int not null auto_increment primary key,
+id_order int auto_increment primary key,
 order_date date not null,
 request_date date not null,
 shippded_date date not null,
@@ -44,14 +44,14 @@ price_each int not null,
 custoner_id int
 );
 create table payments(
-id_payment int not null auto_increment primary key,
+id_payment int auto_increment primary key,
 check_number varchar(50) not null,
 date_payment date not null,
 amount int not null,
 customer_id int
 );
 create table employees(
-id_employee int not null auto_increment primary key,
+id_employee int auto_increment primary key,
 last_name nvarchar(50) not null,
 first_name nvarchar(50) not null,
 email varchar(100) not null,
@@ -70,7 +70,7 @@ postal_code nvarchar(15) not null,
 country nvarchar(50) not null
 );
 create table OrderDetails(
-id_Order_Details int not null auto_increment primary key,
+id_Order_Details int auto_increment primary key,
 product_id varchar(20),
 orders int
 );
