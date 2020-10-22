@@ -26,19 +26,19 @@ create table Category(
 id_category int auto_increment primary key,
 nameCategory varchar(50) not null
 );
-
+drop table borroworder;
 create table BorrowOrder(
 id_order int auto_increment primary key,
-last_borrwed_date datetime not null,
-date_borrow datetime not null,
-date_return datetime not null,
+last_borrwed_date date not null,
+date_borrow date not null,
+date_return date not null,
 status_borrow varchar(20) not null default 'waiting',
 descriptions text null,
 student_id varchar(15),
-check (date_return >= date_borrow and date_borrow >= last_borrwed_date),
-check ( status_borrow = 'waiting' or 'completed' or 'canceled')
+CONSTRAINT check_01 check (date_return >= date_borrow and date_borrow >= last_borrwed_date),
+CONSTRAINT check_02 check ( status_borrow = 'waiting' or status_borrow = 'completed' or status_borrow = 'canceled')
 );
-
+drop table browbooks;
 create table BrowBooks(
 id_brow_book int,
 order_id int,
@@ -50,6 +50,12 @@ alter table BrowBooks add primary key (id_brow_book);
 
 alter table Books add foreign key(category_id) references Category(id_category);
 alter table BorrowOrder add foreign key(student_id) references Student(student_number);
-alter table BrowBooks add foreign key(order_id) references BorrowOrder(id_order);
-alter table BrowBooks add foreign key(book_id) references Books(book_number);
+alter table BrowBooks 
+add foreign key(order_id) references BorrowOrder(id_order),
+add foreign key(book_id) references Books(book_number);
+alter table borroworder 
+modify last_borrwed_date date not null,
+modify date_borrow date not null,
+modify date_return date not null;
+alter table browbooks add primary key (id_brow_book);
 

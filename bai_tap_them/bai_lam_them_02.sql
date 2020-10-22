@@ -4,7 +4,7 @@ drop table orders;
 create table categories(
 id_categorie int auto_increment primary key,
 name nvarchar(50) not null unique,
-Descriptions nvarchar(500)
+Descriptions blob
 );
 create table suppliers(
 id_supplier int auto_increment primary key,
@@ -40,7 +40,7 @@ discount int not null default 0,
 stock int not null default 0,
 category_id int not null,
 supplier_id int not null,
-Descriptions nvarchar(10000) not null,
+Descriptions blob not null,
 check (price >=0),
 check (discount > 0 and discount <100)
 );
@@ -49,15 +49,15 @@ id_order int auto_increment primary key,
 created_date datetime not null default current_timestamp,
 shipped_date datetime,
 status_order varchar(50) not null default 'waiting',
-Descriptions nvarchar(10000),
+Descriptions blob,
 shipping_adress nvarchar(500)not null,
 shipping_city nvarchar(50)not null,
 payment_type varchar(50)not null default 'cash',
 customer_id varchar(50)not null,
 employee_id varchar(50)not null,
-check (shipped_date >= created_date),
-check (status_order='waiting'or'completed'or'canceled'),
-check(payment_type='pay'or'creditcard')
+constraint check_01 check (shipped_date >= created_date),
+constraint check_02 check (status_order ='waiting'or status_order = 'completed'or status_order = 'canceled'),
+constraint check_03 check (payment_type ='pay'or payment_type = 'creditcard')
 );
 create table OrderDetails(
 id_order_details int auto_increment primary key,
