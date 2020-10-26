@@ -1,0 +1,17 @@
+body{
+    color: aqua;
+}
+h1,p{
+    width: 80%;
+    font-family: "Times New Roman",Tahoma,Arial;
+}
+h1 {
+    color: blue;
+    text-align: center;
+}
+
+p {
+    color: green;
+    text-align: justify;
+    text-indent: 50px;
+}

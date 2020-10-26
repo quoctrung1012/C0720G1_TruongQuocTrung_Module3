@@ -1,0 +1,17 @@
+ol {
+    text-transform: capitalize;
+    color: green;
+
+}
+
+body {
+    background: antiquewhite;
+}
+
+a {
+    text-decoration: none;
+}
+
+h1, ol {
+    text-transform: capitalize;
+}

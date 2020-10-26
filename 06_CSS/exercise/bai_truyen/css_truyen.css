@@ -1,0 +1,29 @@
+p {
+    text-align: justify;
+}
+
+#left {
+    width: 30%;
+    float: left;
+    text-align: center;
+}
+
+#right {
+    width: 70%;
+    float: right;
+}
+
+#center {
+    width: 100%;
+}
+
+body {
+    background: aqua;
+}
+
+button {
+    text-transform: capitalize;
+}
+image{
+    width: 150%;
+}

@@ -4,13 +4,17 @@ use caseStudy;
 
 create table ViTri(
 IdVitri int,
-TenViTri varchar(50) not null);
+TenViTri varchar(50) not null
+);
 create table TrinhDo(
 IdTrinhDo int ,
-TrinhDo varchar(50) not null);
+TrinhDo varchar(50) not null
+);
 create table BoPhan(
 IdBoPhan int,
-BoPhan varchar(50) not null);
+BoPhan varchar(50) not null
+);
+
 create table NhanVien(
 IdNhanVien int,
 hoTen varchar(50) not null,
@@ -21,10 +25,10 @@ SDT varchar(50) not null,
 Email varchar(50) not null,
 DiaChi varchar(50) not null
 );
-
 create table LoaiKhachHang(
 IdLoaiKhach int,
-TenLoaiKhach varchar(50) not null);
+TenLoaiKhach varchar(50) not null
+);
 create table KhachHang(
 IdKhachHang int,
 HoTen varchar(50) not null,
@@ -32,7 +36,7 @@ NgaySinh date,
 SoCNND varchar(50) not null,
 SDT varchar(50) not null,
 Email varchar(50) not null,
-DiaChi varchar(50) not null
+DiaChi varchar(255) not null
 );
 
 create table KieuThue(
@@ -65,6 +69,7 @@ SoLuong int
 create table HopDong(
 IdHopDong int,
 NgayLamHopDong date ,
+NgayKetThuc date,
 TienDatCoc int not null,
 TongTien int not null);
 
@@ -95,7 +100,7 @@ alter table hopdong
 add primary key(IdHopDong), modify IdHopDong int auto_increment,
 add IdNhanVien int after IdHopDong,
 add IdKhachHang int after IdHopDong,
-add IdHopDongChiTiet int after IdHopDong;
+add IdDichVu int after IdHopDong;
 
 alter table nhanvien
 add constraint vitri_fk foreign key(IdVitri) references vitri(IdVitri),
@@ -119,7 +124,28 @@ add constraint hopdong_fk foreign key (IdHopDong) references hopdong(IdHopDong);
 alter table hopdong 
 add constraint nhanvien_fk foreign key (IdNhanVien) references nhanvien(IdNhanVien),
 add constraint khachhang_fk foreign key (IdKhachHang) references khachhang(IdKhachHang),
-add constraint hopdongchitiet_fk foreign key (IdHopDongChiTiet) references hopdongchitiet(IdHopDongChiTiet);
+add constraint dichvu_fk foreign key (IdDichVu) references dichvu(IdDichVu);
 
-
-
+alter table vitri add constraint vitri_check check (TenViTri = 'Le Tan' or TenViTri = 'Phuc Vu' or TenViTri = 'Chuyen Vien' or TenViTri = 'Giam Sat' or TenViTri = 'Quan Ly' or TenViTri = 'Giam Doc');
+alter table trinhdo add constraint trinhdo_check check (trinhdo = 'Trung Cap' or  trinhdo = 'Cao Dang' or trinhdo = 'Dai Hoc' or trinhdo = 'Sau Dai Hoc');
+alter table bophan add constraint bophan_check check (bophan = 'Sale – Marketing' or bophan = 'Hanh Chinh' or bophan = 'Phuc Vu' or bophan = 'Quan Ly');
+alter table nhanvien add constraint luong_check check (Luong > 0);
+alter table loaikhachhang add constraint loaikhach_check check ( TenLoaiKhach = 'Diamond' or TenLoaiKhach = 'Platinium' or TenLoaiKhach = 'Gold' or TenLoaiKhach = 'Silver' or TenLoaiKhach = ' Member');
+alter table kieuthue add constraint kieuthue_check check (TenKieuThue = 'Ngay' or TenKieuThue = 'Thang' or TenKieuThue = 'Nam' or TenKieuThue = 'Gio');
+alter table loaidichvu add constraint loaidichvu_check check (TenLoaiKieuThue = 'Villa' or TenLoaiKieuThue = 'House' or TenLoaiKieuThue = 'Room');
+alter table dichvu 
+add constraint dichvu_check_ten check (TenDichVu = 'Villa' or TenDichVu = 'House' or TenDichVu = 'Room'),
+add constraint dichvu_check_dientich check (DienTich >= 30),
+add constraint dichvu_check_sotang check (SoTang >0),
+add constraint dichvu_check_songuoi check (SoNguoiToiDa > 0),
+add constraint dichvu_check_chiphi check (ChiPhiThue >0),
+add constraint dichvu_check_trangthai check (TrangThai = 'Dang Trong' or TrangThai = 'Dang Thue' or TrangThai = 'Moi tra, dang don dep');
+alter table dichvudikem
+add constraint dichvudikem_check_ten check (TenDichVuDiKem = 'Massage' or TenDichVuDiKem = 'Karaoke' or TenDichVuDiKem = 'Thuc An' or TenDichVuDiKem = 'Nuoc Uong' or TenDichVuDiKem = 'Thue Xe'),
+add constraint dichvudikem_check_gia check (Gia >0),
+add constraint dichvudikem_check_donvi check (DonVi >0),
+add constraint dichvudikem_check_trangthai check (TrangThaiKhaDung = 'Dang Su Dung' or TrangThaiKhaDung = 'Khong Su Dung');
+alter table hopdongchitiet add constraint hopdongchitiet_check check (SoLuong >0);
+alter table hopdong
+add constraint hopdong_check_tiendatcoc check (TienDatCoc > 0),
+add constraint hopdong_check_tongtien check (TongTien > 0);
