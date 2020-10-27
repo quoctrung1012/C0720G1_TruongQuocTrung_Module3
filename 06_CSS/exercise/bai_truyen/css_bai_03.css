@@ -1,17 +1,41 @@
 ol {
-    text-transform: capitalize;
     color: green;
-
 }
 
 body {
-    background: antiquewhite;
+    background-image: url("image/131120hinh-nen-nhung-hoa-tiet-trang-tri-mau-xanh-den-danh-cho-wesite.jpg");
 }
 
 a {
     text-decoration: none;
 }
 
-h1, ol {
+h1, ol, button {
     text-transform: capitalize;
 }
+
+.image {
+    text-align: center;
+    width: 150%;
+}
+
+#row_01, #row_02 {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+}
+
+#content_left {
+    width: 80%;
+    float: left;
+}
+#content_right{
+    width: 20%;
+    float: left;
+}
+
+.image {
+    float: left;
+    width: 25%;
+}
+
