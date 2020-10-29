@@ -9,5 +9,18 @@ and khachhang.DiaChi = 'Đà Nẵng' or khachhang.DiaChi = 'Quảng Trị';
 select khachhang.HoTen, count(hopdong.IdKhachHang), loaikhachhang.TenLoaiKhach from hopdong
 join khachhang on hopdong.IdKhachHang = khachhang.IdKhachHang
 join loaikhachhang on khachhang.IdLoaiKhach = loaikhachhang.IdLoaiKhach
-where loaikhachhang.TenLoaiKhach = 'Diamond' order by hopdong.IdKhachHang desc
+where loaikhachhang.TenLoaiKhach = 'Diamond' order by hopdong.IdKhachHang desc;
+-- Câu 5:
+select khachhang.IdKhachHang, khachhang.HoTen, loaikhachhang.TenLoaiKhach, hopdong.IdHopDong, dichvu.TenDichVu, hopdong.NgayLamHopDong, hopdong.NgayKetThuc, hopdong.TongTien + ( hopdongchitiet.SoLuong * dichvudikem.Gia) as Tong_tien from khachhang
+left join hopdong on khachhang.IdKhachHang = hopdong.IdKhachHang
+left join dichvu on	hopdong.IdDichVu = dichvu.IdDichVu
+left join hopdongchitiet on hopdong.IdHopDong = hopdongchitiet.IdHopDongChiTiet
+left join dichvudikem on hopdongchitiet.IdDichVuDiKem = dichvudikem.IdDichVuDiKem
+left join loaikhachhang on khachhang.IdLoaiKhach = loaikhachhang.IdLoaiKhach;
 
+
+-- Câu 8
+-- Cách 1:
+select distinct HoTen from khachhang;
+-- Cách 2:
+select HoTen from khachhang group by HoTen;
