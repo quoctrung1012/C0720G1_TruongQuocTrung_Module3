@@ -1,0 +1,97 @@
+
+#menu {
+    background-color: darkblue;
+    width: 99%;
+    height: 30px;
+    position: relative;
+    top: 0;
+    border-radius: 10px;
+}
+
+a {
+    text-decoration: none;
+}
+#text{
+    text-align: left;
+}
+#symbol {
+    position: absolute;
+    top: 5px;
+    left: 10px;
+}
+
+#name {
+    position: absolute;
+    top: 7px;
+    left: 40px;color: white;
+}
+
+#nav {
+    width: 250px;
+    float: left;
+    margin-bottom: 5px;
+    background-color: blue;
+}
+
+#content {
+    position: relative;
+    top: 150px;
+    float: left;
+    width: 300px;
+
+}
+
+#inputInFor {
+    position: relative;
+    top: 150px;
+    float: left;
+    background-color: beige;
+    width: 218px;
+    height: 180px;
+    border-radius: 3px;
+}
+
+#login {
+    position: absolute;
+    left: 5px;
+    background-color: blue;
+    border: blue;
+}
+
+#login, #sign_up, input {
+    border-radius: 3px;
+}
+
+#miss_pass {
+    position: absolute;
+    top: 100px;
+    left: 65px;
+}
+
+#pass {
+    color: blue;
+}
+
+#sign_up {
+    position: absolute;
+    top: 140px;
+    left: 5px;
+    background-color: greenyellow;
+    border: greenyellow;
+}
+
+button {
+    height: 30px;
+    width: 208px;
+}
+
+input {
+    margin: 5px;
+    width: 200px;
+    border: black 1px;
+}
+#message{
+    position: absolute;
+    top: 180px;
+    font-size: 10px;
+}

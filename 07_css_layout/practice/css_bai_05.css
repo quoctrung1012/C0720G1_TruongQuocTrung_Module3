@@ -1,0 +1,24 @@
+body{
+    margin: 1px;
+}
+.nav_bar{
+    overflow: hidden;
+    background-color: #004C00;
+    position: fixed;
+    top: 0px;
+    width: 100%;
+}
+.nav_bar a{
+    float: left;
+    /*display: block;*/
+    color: red;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 14px;
+}
+.main{
+    padding: 16px;
+    margin-top: 30px;
+    height: 1500px;
+}
