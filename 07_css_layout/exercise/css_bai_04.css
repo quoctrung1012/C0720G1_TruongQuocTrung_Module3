@@ -1,0 +1,86 @@
+body {
+    font-family: "Times New Roman", Arial, Tahoma;
+    /*background-color: darkgray;*/
+    background-image: url("hinh_anh_vs_phim/background-pictures-1104676636.jpg");
+}
+
+#header_01 {
+    height: 25px;
+    padding: 0;
+    margin: 0;
+    background-color: white;
+    border: 1px solid #CDCDCD;
+}
+
+#header_01 ul, #header_01 li {
+    padding: 0;
+    margin: 0;
+}
+
+/*Bây giờ, định nghĩa tiếp một bộ chọn riêng cho các phần tử trong danh sách:*/
+#header_01 li {
+    position: relative;
+    float: left;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/*Sau đó, chúng ta định nghĩa một bộ chọn dành cho các liên kết trong trình đơn, */
+/*bộ chọn này sẽ cố định độ rộng của một mục chọn trong trình đơn, chiều cao, */
+/*cách hiển thị và định dạng về văn bản của các liên kết trong trình đơn.*/
+#image li a{
+    position: relative;
+    height: 25px;
+    display: block;
+}
+#menu li a {
+    display: block;
+    text-decoration: none;
+    text-align: center;
+    color: blueviolet;
+    line-height: 30px;
+    width: 150px;
+    height: 25px;
+}
+
+#header_01 ul ul li a {
+    width: 150px;
+    text-align: left;
+    padding-left: 10px;
+}
+
+/*Tiếp theo, chúng ta bổ sung thêm một bộ chọn dành cho trường hợp khi các liên kết được con trỏ đưa qua, */
+/*bộ chọn sẽ chuyển màu nền của liên kết sang màu đỏ khi xảy ra sự kiện này:*/
+#menu li a:hover {
+    background-color: darkgray;
+}
+
+/*Sau đó, chúng ta thêm một bộ chọn dành cho các danh sách con (trình đơn con) */
+/*để quy định về vị trí hiển thị của chúng so với mục chọn của trình đơn cha. Bộ chọn đó như sau:*/
+#header_01 ul ul {
+    position: absolute;
+    top: 30px;
+}
+
+/*Bây giờ, chúng ta có thể thấy các mục chọn của trình đơn con đang hiển thị lên và đè lên nhau, */
+/*chúng ta cần bổ sung thêm một mô tả với thuộc tính visibility cho bộ chọn #menu ul ul vừa được định nghĩa ở trên, khi đó bộ chọn này sẽ như sau:*/
+#header_01 ul ul {
+    left: 15px;
+    visibility: hidden;
+}
+
+/*Cuối cùng, để các trình đơn bị ẩn sẽ hiển thị mỗi khi con trỏ được đưa qua mục chọn của trình đơn cha, */
+/*chúng ta cần tạo thêm một bộ chọn nữa. Bộ chọn này được áp dụng cho các danh sách con (trình đơn con) */
+/*mỗi khi mục chọn tương ứng ở trình đơn cha xảy ra sự kiện đưa con trỏ qua:*/
+#header_01 ul li:hover ul {
+    visibility: visible;
+}
+#video{
+    position: relative;
+    top: 100px;
+    left: 25px;
+}
+.video {
+    margin-bottom: 20px;
+}

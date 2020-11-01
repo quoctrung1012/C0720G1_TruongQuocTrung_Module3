@@ -9,12 +9,14 @@ body {
 a {
     text-decoration: none;
 }
-
+h1{
+    color: red;
+}
 h1, ol, button {
     text-transform: capitalize;
 }
 
-.image {
+.image_type {
     text-align: center;
     width: 150%;
 }
@@ -34,7 +36,7 @@ h1, ol, button {
     float: left;
 }
 
-.image {
+.image_type {
     float: left;
     width: 25%;
 }
