@@ -17,6 +17,10 @@
 <body>
 <div class="container-fluid pl-2 pr-2">
 <h1 style="text-align: center">Product List</h1>
+    <form method="get" class="row" style="margin-left: 300px">
+        <input type="submit" class="btn btn-info" value="Search" name="action">
+        <input type="text" class="form-control col-8" name="name">
+    </form>
 <table class="table table-hover table-bordered" style="text-align: center">
     <tr>
         <td scope="col">Id Product</td>

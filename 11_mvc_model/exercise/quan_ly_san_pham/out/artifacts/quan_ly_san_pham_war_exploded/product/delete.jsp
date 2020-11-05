@@ -46,7 +46,8 @@
             <td style="text-align: right">
                 <button class="btn btn-danger" type="submit">Delete Product</button>
             </td>
-            <td style="text-align: right"><a href="/products">
+            <td style="text-align: right">
+                <a href="/products">
                 <button class="btn btn-warning" type="button">Back to Product list</button>
             </a>
             </td>

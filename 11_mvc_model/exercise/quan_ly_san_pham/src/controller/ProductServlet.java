@@ -34,6 +34,8 @@ public class ProductServlet extends HttpServlet {
             case "delete":
                 deleteProduct(request, response);
                 break;
+            case "find":
+                findByName(request,response);
             default:
                 break;
         }
@@ -59,9 +61,34 @@ public class ProductServlet extends HttpServlet {
             case "view":
                 viewProduct(request, response);
                 break;
+            case "find":
+                showFindByName(request, response);
             default:
                 listProduct(request, response);
                 break;
+        }
+    }
+    private void findByName(HttpServletRequest request, HttpServletResponse response) {
+        String name = request.getParameter("name");
+//        Product product = productService.
+    }
+
+    private void showFindByName(HttpServletRequest request, HttpServletResponse response) {
+        String name = request.getParameter("name");
+        List<Product> productList = productService.findByName(name);
+        RequestDispatcher dispatcher;
+        if (productList == null) {
+            dispatcher = request.getRequestDispatcher("error-404.jsp");
+        } else {
+            request.setAttribute("product", productList);
+            dispatcher = request.getRequestDispatcher("product/find.jsp");
+            try {
+                dispatcher.forward(request,response);
+            } catch (ServletException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
