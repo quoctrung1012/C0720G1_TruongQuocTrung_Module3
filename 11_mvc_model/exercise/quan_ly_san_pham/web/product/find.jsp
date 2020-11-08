@@ -14,30 +14,23 @@
           integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 </head>
 <body>
-<div class="container-fluid pl-2 pr-2">
+<div class="container pl-2 pr-2">
     <h1 style="text-align: center">Product List</h1>
-    <form method="get" class="row" style="margin-left: 300px">
-        <input type="submit" class="btn btn-info" value="Search" name="action">
-        <input type="text" class="form-control col-8" name="name">
-    </form>
+    <p>
+        <a href="/products"><button class="btn btn-warning" type="button">Back to Product list</button></a>
+    </p>
     <table class="table table-hover table-bordered" style="text-align: center">
         <tr>
             <td scope="col">Id Product</td>
             <td scope="col">Name Product</td>
-            <td scope="col">Price Product</td>
-            <td scope="col">Producer Product</td>
-            <td scope="col">Description Product</td>
             <td scope="col">Information Product</td>
             <td scope="col">Edit Product</td>
             <td scope="col">Delete Product</td>
         </tr>
-        <c:forEach items='${requestScope.products}' var="product">
+        <c:forEach items='${requestScope.productList}' var="product">
             <tr>
                 <th scope="col"><a><c:out value="${product.id}"/></a></th>
                 <td><c:out value="${product.name}"/></td>
-                <td><c:out value="${product.price}"/></td>
-                <td><c:out value="${product.producer}"/></td>
-                <td><c:out value="${product.description}"/></td>
                 <td><a href="/products?action=view&id=${product.id}">
                     <button class="btn btn-success" type="button">Information Product</button>
                 </a></td>
@@ -50,14 +43,6 @@
             </tr>
         </c:forEach>
     </table>
-    <div class="container">
-        <p style="text-align: right" >
-            <a href="/products?action=create">
-                <button class="btn btn-warning" type="button">Create new Product</button>
-            </a>
-        </p>
-    </div>
-
 </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"

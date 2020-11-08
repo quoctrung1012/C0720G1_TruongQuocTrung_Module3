@@ -2,10 +2,7 @@ package service;
 
 import model.Product;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class ProductServiceImpl implements ProductService {
     private static Map<Integer, Product> products;
@@ -47,9 +44,11 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<Product> findByName(String name) {
         List<Product> productList = new ArrayList<>();
-        for (int key: products.keySet()){
-            if (products.get(key).getName().contains(name)){
-                productList.add(products.get(key));            }
+        Set<Integer> keySet = products.keySet();
+        for (Integer key : keySet) {
+            if (products.get(key).getName().contains(name)) {
+                productList.add(products.get(key));
+            }
         }
         return productList;
     }

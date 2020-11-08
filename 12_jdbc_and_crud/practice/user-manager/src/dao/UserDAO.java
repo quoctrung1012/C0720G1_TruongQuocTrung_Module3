@@ -18,6 +18,7 @@ public class UserDAO implements IUserDAO {
     private static final String UPDATE_USERS_SQL = "update users set name = ?,email= ?, country =? where id = ?;";
 //    private static final String FIND_BY_COUNTRY = "select * from user where country like '%' " + " ? " + " '%';";
     private static final String FIND_BY_COUNTRY = "select * from users where country?;";
+    private static  final String GROUP_BY_NAME = "select * from users group by name;";
 
     public UserDAO() {
     }

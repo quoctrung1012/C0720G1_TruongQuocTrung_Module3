@@ -16,7 +16,8 @@ public class UserDAO implements IUserDAO {
     private static final String SELECT_ALL_USERS = "select * from users";
     private static final String DELETE_USERS_SQL = "delete from users where id = ?;";
     private static final String UPDATE_USERS_SQL = "update users set name = ?,email= ?, country =? where id = ?;";
-    private static final String FIND_BY_COUNTRY = "select * from user where country like '%' " + " ? " + " '%';";
+    private static final String FIND_BY_COUNTRY = "select * from users where country like ?;";
+    private static final String SORT_BY_NAME = "select * from users order by name;";
 
     public UserDAO() {
     }
@@ -38,7 +39,6 @@ public class UserDAO implements IUserDAO {
 
     public void insertUser(User user) throws SQLException {
         System.out.println(INSERT_USERS_SQL);
-        // try-with-resource statement will auto close the connection.
         try (Connection connection = getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USERS_SQL)) {
             preparedStatement.setString(1, user.getName());
             preparedStatement.setString(2, user.getEmail());
@@ -75,19 +75,11 @@ public class UserDAO implements IUserDAO {
     }
 
     public List<User> selectAllUsers() {
-
-        // using try-with-resources to avoid closing resources (boiler plate code)
         List<User> users = new ArrayList<>();
-        // Step 1: Establishing a Connection
         try (Connection connection = getConnection();
-
-             // Step 2:Create a statement using connection object
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_USERS);) {
             System.out.println(preparedStatement);
-            // Step 3: Execute the query or update query
             ResultSet rs = preparedStatement.executeQuery();
-
-            // Step 4: Process the ResultSet object.
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String name = rs.getString("name");
@@ -126,14 +118,44 @@ public class UserDAO implements IUserDAO {
     }
 
     @Override
-    public List<User> findCountry(String country) throws SQLException {
+    public List<User> findUserCountry(String inputCountry) throws SQLException {
+        List<User> users = new ArrayList<>();
         try (
                 Connection connection = getConnection();
              PreparedStatement statement = connection.prepareStatement(FIND_BY_COUNTRY)) {
-
+            statement.setString(1,"%" + inputCountry + "%");
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String name = resultSet.getString("name");
+                String email = resultSet.getString("email");
+                String country = resultSet.getString("country");
+                users.add(new User(id, name, email, country));
+            }
+        } catch (SQLException e) {
+            printSQLException(e);
+        }
+        return users;
         }
 
-        return null;
+    @Override
+    public List<User> sortByName() throws SQLException {
+        List<User> userList = new ArrayList<>();
+        try (Connection connection = getConnection();
+            PreparedStatement statement = connection.prepareStatement(SORT_BY_NAME)){
+            System.out.println(statement);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String name = resultSet.getString("name");
+                String email = resultSet.getString("email");
+                String country = resultSet.getString("country");
+                userList.add(new User(id, name, email, country));
+            }
+        } catch (SQLException e) {
+            printSQLException(e);
+        }
+        return userList;
     }
 
     private void printSQLException(SQLException ex) {
@@ -151,6 +173,4 @@ public class UserDAO implements IUserDAO {
             }
         }
     }
-
-
 }

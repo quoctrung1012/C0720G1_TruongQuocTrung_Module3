@@ -39,11 +39,19 @@
                     <a href="/users?action=edit&id=${user.id}">Edit</a>
                     <a href="/users?action=delete&id=${user.id}">Delete</a>
                 </td>
-<%--                <td>--%>
-<%--                    <a href="/users?action="></a>--%>
-<%--                </td>--%>
             </tr>
         </c:forEach>
+        <div style="text-align: center">
+            <form method="post" action="/users?action=find">
+                <input type="text" name="findName">
+                <input type="submit" value="Find">
+            </form>
+        </div>
+        <div style="text-align: center">
+            <form method="post" action="/users?action=sort">
+                <input type="submit" value="sort">
+            </form>
+        </div>
     </table>
 </div>
 </body>
